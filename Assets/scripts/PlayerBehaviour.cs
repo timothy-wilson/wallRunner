@@ -12,6 +12,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     void Start()
     {
+        Debug.Log("testing commit");
         rb = transform.GetComponent<Rigidbody>();
 
         HorF = new Vector3(0.2f, 0.0f, 0.0f);
