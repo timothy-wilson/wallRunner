@@ -7,12 +7,11 @@ public class PlayerBehaviour : MonoBehaviour
     private Rigidbody rb;
     private Vector3 HorF;
     private Vector3 VerF;
-    private bool onWall;
-    private bool onRail;
+    private bool onWall = true;
+    private bool onRail = true;
 
     void Start()
     {
-        Debug.Log("testing commit");
         rb = transform.GetComponent<Rigidbody>();
 
         HorF = new Vector3(0.2f, 0.0f, 0.0f);
@@ -27,7 +26,6 @@ public class PlayerBehaviour : MonoBehaviour
         }
         else if (!onRail)
         {
-            Debug.Log(VerF);
             rb.MovePosition(transform.position + VerF);
         }
         else if (!onWall)
@@ -35,7 +33,7 @@ public class PlayerBehaviour : MonoBehaviour
             rb.MovePosition(transform.position + HorF);
         }
 
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.J))
         {
             if (onWall && onRail)
             {
@@ -43,7 +41,7 @@ public class PlayerBehaviour : MonoBehaviour
                 onWall = false;
             }
         }
-        else if (Input.GetKeyDown(KeyCode.J))
+        else if (Input.GetKeyDown(KeyCode.F))
         {
             if (onWall && onRail)
             {
@@ -63,6 +61,10 @@ public class PlayerBehaviour : MonoBehaviour
         else if (collider.tag == "rail")
         {
             onRail = true;
+        }
+        else if (collider.tag == "obstacle")
+        {
+            Debug.Log("You Died");
         }
     }
 }
